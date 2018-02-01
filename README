@@ -1,0 +1,72 @@
+##########################
+
+CONDENSED CODON MATRIX: Ranking codons and orthologs based on their phylogenetic signal
+scoreCharactersOnTree.py
+Created By: Justin Miller
+Email: jmiller@byu.edu
+
+##########################
+
+Purpose: Determine which codon usages and aversions display the strongest phylogenetic signals.
+
+
+ARGUMENT OPTIONS:
+
+	-h, --help     show this help message and exit
+	-o OUTPUT      Output File
+	-r REF         Path to the Reference Phylogeny in Newick Format
+	-c CHAR        Path to Character File
+
+
+REQUIREMENTS:
+
+scoreCharactersOnTree.py uses Python version 2.7
+
+Python libraries that must be installed include:
+1. sys
+2. argparse
+3. re
+4. regex
+5. pyparsing
+
+If any of those libraries is not currently in your Python Path, use the following command:
+pip install --user [library_name]
+to install the library to your path.
+
+
+Input Files:
+This algorithm requires two input files: a reference phylogeny and a character file (see test files for examples).
+An output file is optional. If not provided, output will be written to standard out.
+
+Output File:
+An output file is not required. If an output file is not supplied, the number of independent origins will be written to standard out.
+
+
+USAGE:
+
+Typical usage requires the -c and -r options with the optional -o. 
+
+
+Example usage:
+python scoreCharactersOnTree.py -c test/character.txt -r test.nwk -o output
+python scoreCharactersOnTree.py -c test/character.txt -r test.nwk > output
+
+
+Running one of the above commands will produce a single output called output in the current directory.
+This command should be fast. 
+
+##########################
+
+License:
+
+This algorithm is free for all academic and non-profit research purposes. 
+
+We only ask that you please cite the following paper if you use this algorithm:
+Codon Aversion Motifs: An alignment-free method to recover phylogenies.
+
+For any for-profit usage, please contact Justin Miller at jmiller@byu.edu
+
+##########################
+
+Thank you, and happy researching!!
+
