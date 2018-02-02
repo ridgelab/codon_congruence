@@ -1,0 +1,82 @@
+##########################
+
+CONDENSED CODON MATRIX: Pipeline from FASTA files to labeled Open Tree of Life
+scoreCharactersOnTree.py
+Created By: Justin Miller
+Email: jmiller@byu.edu
+
+##########################
+
+Purpose: Label the Open Tree of Life with Completely Homologous Codon Character State Changes
+
+##########################
+
+REQUIREMENTS:
+
+See requirements in README and README_getOTLtree
+
+##########################
+
+Step 1:
+Move all coding sequences (CDS) in FASTA format into a directory, one for each species. 
+Each fasta file should be in the format {species_name}{.gz}, with the .gz being used if the file is gzipped.
+An example of a directory with correctly formatted CDS files is in the test/mammals/ directory.
+
+Step 2:
+Make a table of codons with different character states in different species
+The recommended method to do this is:
+python makeTable.py -id test/mammals -o output
+This command should take between 1-2 minutes
+
+The -m option is optional, and by default requires at least two species be in each character state; 
+however, any number of species could be required to be in each group.
+
+Step 3:
+Make a list of species to be included in the analysis. An example of this file is test/list_of_species
+
+Step 4:
+Induce a subtree of the Open Tree of Life with the list of species.
+See README_getOTLtree for more information.
+The recommended usage is:
+python getOTLtree.py -i test/list_of_species  -o OTL.nwk
+This command should take between 1-5 seconds
+Press 1 and [ENTER] to select Nannospalax galili from Eukaryota
+
+Step 5:
+Make a table of origin/loss events for each codon character state
+See README for more information.
+The recommended usage is:
+python scoreCharactersOnTree.py -c output -r OTL.nwk -o state_change
+This command should take between 30-60 seconds
+
+Step 6:
+Map completely homologous codon character states to the Open Tree of Life.
+This step requires the character state table (-c), the reference phylogeny (-r), and the table of origin/loss (-s)
+The recommended usage is:
+python mapCharsToRef.py -c output -r OTL.nwk -s state_change -o mapped_tree.nwk
+This command should take between 1-5 seconds.
+
+The output file from step 6 can be used in a phylogenetic tree viewing software package, such as FigTree, to visualize character
+state changes. An accompanying file {output_file_name}_charactersUsed will be created, which is in the same order as the numbers
+that are on the labels in the output file. The _charactersUsed file shows which codons were completely homologous, and if it was 
+a gain or a loss at that node.
+
+The expected output from each step (named the same as the output files in each command in this README_pipeline) are found in
+expected_output
+
+
+##########################
+
+License:
+
+This algorithm is free for all academic and non-profit research purposes. 
+
+We only ask that you please cite the following paper if you use this algorithm:
+Completely Homologous Codon Usage: Homoplasy-free codon usage within various orthologs across all domains of life
+
+For any for-profit usage, please contact Justin Miller at jmiller@byu.edu
+
+##########################
+
+Thank you, and happy researching!!
+

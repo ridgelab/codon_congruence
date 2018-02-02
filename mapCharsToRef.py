@@ -15,7 +15,7 @@ def parseArgs():
 	parser = argparse.ArgumentParser(description='Find Phylogenetic Signal of codon usage and aversion.')
 	parser.add_argument("-c",help="Input Character File",action="store", dest="char", required=True)
 	parser.add_argument("-r",help="Input Reference Phylogeny File",action="store", dest="ref", required=True)
-	parser.add_argument("-g",help="Input Origin File From Running scoreCharactersOnTree",action="store", dest="origin", required=True)
+	parser.add_argument("-s",help="Input Origin File From Running scoreCharactersOnTree",action="store", dest="origin", required=True)
 	parser.add_argument("-o",help="Output File",action="store",dest="output", required=False)
 	args = parser.parse_args()
 	return args
