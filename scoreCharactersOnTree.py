@@ -137,7 +137,7 @@ def getNumOrigins(clades, geneCharsForGene,gene):
 		else:
 			numOriginEvents += states.count("1")
 			curState[tuple(clade)] = "0"
-	numUnresolved = len(curState[tuple(clades[-1])]) /2.0
+	numUnresolved = int(len(curState[tuple(clades[-1])]) /2.0)
 	return (gene.replace(" ","_") + "\t" + str(numOriginEvents) + "\t" +str(numLossEvents) +"\t" + str(int(numUnresolved)) + "\t" + str(minRefNum) + "\t" + str(totalSpecies)+"\t" + str(float(minRefNum)/totalSpecies) + "\t" + str(float(numOriginEvents + numLossEvents + numUnresolved)/minRefNum)  + "\n")#, 1 #1 Unknown 0/1 event at the root node
 
 
